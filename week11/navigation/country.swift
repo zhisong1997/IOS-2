@@ -7,12 +7,24 @@
 
 import SwiftUI
 
-struct country: View {
+struct countryView: View {
+    var search: [String]
+    var title: String
+    var name = ["J"]
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Section(header: Text(title)) {
+            ForEach(search.filter { name.contains($0) }, id: \.self) { city in
+                NavigationLink {
+                    weatherView(name: city)
+                } label: {
+                    Text(city)
+                }
+            }
+        }
+        
     }
 }
 
 #Preview {
-    country()
+    countryView(search: ["j"], title: "zhi song", name: ["j"])
 }
